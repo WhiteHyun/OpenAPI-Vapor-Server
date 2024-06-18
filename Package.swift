@@ -1,0 +1,33 @@
+// swift-tools-version: 5.10
+import PackageDescription
+
+let package = Package(
+  name: "EventService",
+  platforms: [.macOS(.v14)],
+  dependencies: [
+    .package(url: "https://github.com/vapor/vapor.git", from: "4.99.3"),
+    .package(url: "https://github.com/apple/swift-openapi-generator", from: "1.2.1"),
+    .package(url: "https://github.com/apple/swift-openapi-runtime", from: "1.4.0"),
+    .package(url: "https://github.com/swift-server/swift-openapi-vapor", from: "1.0.1"),
+  ],
+  targets: [
+    .target(
+      name: "EventAPI",
+      dependencies: [
+        .product(name: "OpenAPIRuntime", package: "swift-openapi-runtime"),
+      ],
+      plugins: [
+        .plugin(name: "OpenAPIGenerator", package: "swift-openapi-generator"),
+      ]
+    ),
+    .executableTarget(
+      name: "EventService",
+      dependencies: [
+        "EventAPI",
+        .product(name: "OpenAPIRuntime", package: "swift-openapi-runtime"),
+        .product(name: "OpenAPIVapor", package: "swift-openapi-vapor"),
+        .product(name: "Vapor", package: "vapor"),
+      ]
+    ),
+  ]
+)

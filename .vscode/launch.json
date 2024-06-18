@@ -1,0 +1,24 @@
+{
+  "configurations": [
+    {
+      "type": "lldb",
+      "request": "launch",
+      "sourceLanguages": ["swift"],
+      "args": [],
+      "cwd": "${workspaceFolder:EventService}",
+      "name": "Debug EventService",
+      "program": "${workspaceFolder:EventService}/.build/debug/EventService",
+      "preLaunchTask": "swift: Build Debug EventService"
+    },
+    {
+      "type": "lldb",
+      "request": "launch",
+      "sourceLanguages": ["swift"],
+      "args": [],
+      "cwd": "${workspaceFolder:EventService}",
+      "name": "Release EventService",
+      "program": "${workspaceFolder:EventService}/.build/release/EventService",
+      "preLaunchTask": "swift: Build Release EventService"
+    }
+  ]
+}
